@@ -18,8 +18,8 @@ const Book = (props) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{props.book.title}</div>
-      <div className="book-authors">{props.book.authors.join(', ')}</div>
+      <div className="book-title">{props.book.title ? props.book.title : ''}</div>
+      <div className="book-authors">{props.book.authors ? props.book.authors.join(', ') : ''}</div>
     </div>
   );
 }

@@ -1,7 +1,41 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import SearchBookResult from './SearchBookResult';
 
 class SearchBooks extends Component {
+  constructor() {
+    super();
+    this.state = {
+      query: '',
+      filteredBooks: []
+    }
+  }
+
+  changeHandler = (event) => {
+    console.log(event.target.value);
+    const value  = event.target.value;
+    this.setState(() => ({
+      query: value
+    }));
+  }
+
+  searchBooks(query) {
+    BooksAPI.search(query).then((books) => {
+      this.setState((curState) => ({
+        ...curState,
+        filteredBooks: books
+      }));
+    });
+    console.log(this.state.filteredBooks);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.query !== this.state.query) {
+      this.searchBooks(this.state.query);
+    }
+  }
+
   render() {
     return (
       <div className="search-books">
@@ -16,12 +50,14 @@ class SearchBooks extends Component {
                 However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                 you don't find a specific author or title. Every search is limited by search terms.
               */}
-            <input type="text" placeholder="Search by title or author" />
+            <input
+              type="text"
+              placeholder="Search by title or author"
+              value={this.state.query}
+              onChange={this.changeHandler} />
           </div>
         </div>
-        <div className="search-books-results">
-          <ol className="books-grid"></ol>
-        </div>
+        <SearchBookResult filteredBooks={this.state.filteredBooks}/>
       </div>
     );
   }
