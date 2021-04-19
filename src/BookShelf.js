@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import Book from './Book';
 
 class BookShelf extends Component {
+  constructor() {
+    super();
+    this.updateShelf = this.updateShelf.bind(this);
+  }
+
+  updateShelf(book, shelf) {
+    this.props.updateShelf(book, shelf);
+  }
+
   render() {
     return (
       <div className="bookshelf">
@@ -11,7 +20,10 @@ class BookShelf extends Component {
             {
               this.props.shelfBooks.map(bk => (
                 <li key={bk.id}>
-                  <Book book={bk}/>
+                  <Book 
+                    book={bk} 
+                    shelf={this.props.shelf}
+                    updateShelf={this.updateShelf} />
                 </li>
               ))
             }

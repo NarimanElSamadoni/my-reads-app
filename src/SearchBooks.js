@@ -13,8 +13,7 @@ class SearchBooks extends Component {
   }
 
   changeHandler = (event) => {
-    console.log(event.target.value);
-    const value  = event.target.value;
+    const { value } = event.target;
     this.setState(() => ({
       query: value
     }));
@@ -27,7 +26,6 @@ class SearchBooks extends Component {
         filteredBooks: books
       }));
     });
-    console.log(this.state.filteredBooks);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -57,7 +55,9 @@ class SearchBooks extends Component {
               onChange={this.changeHandler} />
           </div>
         </div>
-        <SearchBookResult filteredBooks={this.state.filteredBooks}/>
+        <SearchBookResult 
+          filteredBooks={this.state.filteredBooks}
+          updateShelf={this.props.updateShelf} />
       </div>
     );
   }

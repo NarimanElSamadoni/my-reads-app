@@ -1,27 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import BookCtrl from './BookCtrl';
 
-const Book = (props) => {
-  return (
-    <div className="book">
-      <div className="book-top">
-        <div
-          className="book-cover"
-          style={{ width: 128, height: 193, backgroundImage: `url(${props.book.imageLinks.smallThumbnail})` }}>
+class Book extends Component {
+  constructor() {
+    super();
+    this.updateShelf = this.updateShelf.bind(this);
+  }
+
+  updateShelf = (shelf) => {
+    this.props.updateShelf(this.props.book, shelf);
+  }
+
+  render() {
+    return (
+      <div className="book">
+        <div className="book-top">
+          <div
+            className="book-cover"
+            style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})` }}>
+          </div>
+          <BookCtrl 
+            currentShelf={this.props.shelf}
+            updateShelf={this.updateShelf} />
         </div>
-        <div className="book-shelf-changer">
-          <select>
-            <option value="move" disabled>Move to...</option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
-            <option value="none">None</option>
-          </select>
-        </div>
+        <div className="book-title">{this.props.book.title ? this.props.book.title : ''}</div>
+        <div className="book-authors">{this.props.book.authors ? this.props.book.authors.join(', ') : ''}</div>
       </div>
-      <div className="book-title">{props.book.title ? props.book.title : ''}</div>
-      <div className="book-authors">{props.book.authors ? props.book.authors.join(', ') : ''}</div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Book;
