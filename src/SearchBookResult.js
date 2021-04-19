@@ -4,16 +4,21 @@ import Book from './Book';
 const SearchBookResult = (props) => {
   return (
     <div className="search-books-results">
-      <ol className="books-grid">
-        {
-          props.filteredBooks && props.filteredBooks.map((bk) => (
-            <Book 
-              key={bk.id} 
-              book={bk}
-              updateShelf={props.updateShelf} />
-          ))
-        }
-      </ol>
+      {props.filteredBooks && props.filteredBooks.length > 0 ?
+        (<ol className="books-grid">
+          {
+            props.filteredBooks.map((bk) => (
+              <Book
+                key={bk.id}
+                book={bk}
+                updateShelf={props.updateShelf} />
+            ))
+          }
+        </ol>) :
+        (<div className="search-books-no-data">
+          <p>No data found, start typing to search for books</p>
+        </div>
+        )}
     </div>
   );
 }
