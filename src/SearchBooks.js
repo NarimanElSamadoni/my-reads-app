@@ -47,7 +47,7 @@ class SearchBooks extends Component {
               onChange={this.changeHandler} />
           </div>
         </div>
-        <SearchBookResult 
+        <SearchBookResult
           filteredBooks={this.state.filteredBooks}
           updateShelf={this.props.updateShelf} />
       </div>

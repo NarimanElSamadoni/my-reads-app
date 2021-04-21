@@ -67,7 +67,7 @@ class BooksApp extends React.Component {
             <div>
               {
                 bookShelves.map(shelf => (
-                  <BookShelf 
+                  <BookShelf
                     key={shelf.id}
                     title={shelf.title}
                     shelf={shelf.key}
