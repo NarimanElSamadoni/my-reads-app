@@ -1,8 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Book from '../Book/Book';
+import Book from '../book/Book';
 
 const SearchBookResult = (props) => {
+  const findShelf = (bookId) => {
+    for (const key in props.booksInShelves) {
+      if (props.booksInShelves.hasOwnProperty(key)) {
+        const books = props.booksInShelves[key];
+        if (books.includes(bookId)) {
+          return key;
+        }
+      }
+    }
+    return 'none';
+  }
+
   return (
     <div className="search-books-results">
       {props.filteredBooks && props.filteredBooks.length > 0 ?
@@ -12,6 +24,7 @@ const SearchBookResult = (props) => {
               <Book
                 key={bk.id}
                 book={bk}
+                shelf={findShelf(bk.id)}
                 updateShelf={props.updateShelf} />
             )))
           }
@@ -26,6 +39,7 @@ const SearchBookResult = (props) => {
 
 SearchBookResult.propTypes = {
   filteredBooks: PropTypes.array.isRequired,
+  booksInShelves: PropTypes.object.isRequired,
   updateShelf: PropTypes.func.isRequired
 }
 

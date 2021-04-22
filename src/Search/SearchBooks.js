@@ -21,16 +21,23 @@ class SearchBooks extends Component {
   }
 
   searchBooks(query) {
-    BooksAPI.search(query).then((books) => {
+    if (query === "") {
       this.setState((curState) => ({
         ...curState,
-        filteredBooks: books
+        filteredBooks: []
       }));
-    }).catch(error => {});
+    } else {
+      BooksAPI.search(query).then((books) => {
+        this.setState((curState) => ({
+          ...curState,
+          filteredBooks: books.error ? [] : books
+        }));
+      }).catch(error => {});
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.query !== this.state.query && this.state.query !== '') {
+    if(prevState.query !== this.state.query) {
       this.searchBooks(this.state.query);
     }
   }
@@ -50,6 +57,7 @@ class SearchBooks extends Component {
         </div>
         <SearchBookResult
           filteredBooks={this.state.filteredBooks}
+          booksInShelves={this.props.booksInShelves}
           updateShelf={this.props.updateShelf} />
       </div>
     );
@@ -57,6 +65,7 @@ class SearchBooks extends Component {
 }
 
 SearchBooks.propTypes = {
+  booksInShelves: PropTypes.object.isRequired,
   updateShelf: PropTypes.func.isRequired
 }
 

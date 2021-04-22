@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as BooksAPI from '../BooksAPI';
-import AppHeader from '../Shared/AppHeader';
-import { Link } from 'react-router-dom';
+import AppHeader from '../shared/AppHeader';
 
 class BookDetails extends Component {
   constructor() {
@@ -25,7 +24,7 @@ class BookDetails extends Component {
       <div>
         <AppHeader />
         <div className="book-details-content">
-          <Link to='/' className="close-details"> Close </Link>
+          <button onClick={this.props.history.goBack} className="close-details"> Close </button>
           <div
             className="book-cover"
             style={{ margin: "auto", width: 128, height: 193, backgroundImage: `url(${this.state.book.imageLinks && this.state.book.imageLinks.smallThumbnail})` }}>

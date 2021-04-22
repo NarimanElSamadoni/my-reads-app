@@ -258,4 +258,6 @@ button:active {
 .close-details {
   height: 25px;
   background-position: unset;
+  background-color: transparent;
+  cursor: pointer;
 }
