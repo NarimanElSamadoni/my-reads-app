@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class BookCtrl extends Component {
   constructor() {
@@ -46,7 +47,11 @@ class BookCtrl extends Component {
       </div>
     );
   }
+}
 
+BookCtrl.propTypes = {
+  currentShelf: PropTypes.string,
+  updateShelf: PropTypes.func.isRequired
 }
 
 export default BookCtrl;

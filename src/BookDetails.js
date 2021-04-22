@@ -33,7 +33,10 @@ class BookDetails extends Component {
           </div>
           <h2 className="book-details-title">{this.state.book.title}</h2>
           <h4 className="book-details-subtitle">{this.state.book.subtitle}</h4>
-          <h5 className="book-details-author">{this.state.book.authors ? this.state.book.authors.join(', ') : ''}</h5>
+          <h5 className="book-details-author">
+            <span style={{textDecoration: "underline"}}>By</span>:
+            {this.state.book.authors ? ' ' + this.state.book.authors.join(', ') : ''}
+          </h5>
           <p className="book-details-desc">{this.state.book.description}</p>
         </div>
       </div>
