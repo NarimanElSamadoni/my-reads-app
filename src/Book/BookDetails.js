@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import * as BooksAPI from './BooksAPI';
-import AppHeader from './AppHeader';
+import * as BooksAPI from '../BooksAPI';
+import AppHeader from '../Shared/AppHeader';
 import { Link } from 'react-router-dom';
 
 class BookDetails extends Component {
@@ -14,7 +14,6 @@ class BookDetails extends Component {
   componentDidMount() {
     const bookId = this.props.match.params.bookId;
     BooksAPI.get(bookId).then(bk => {
-      console.log(bk);
       this.setState(() => ({
         book: bk
       }));

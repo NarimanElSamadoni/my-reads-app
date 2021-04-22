@@ -2,11 +2,11 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
-import BookShelf from './BookShelf';
-import AppHeader from './AppHeader';
-import SearchBooks from './SearchBooks';
-import AddBook from './AddBook';
-import BookDetails from './BookDetails';
+import BookShelf from './Book/BookShelf';
+import AppHeader from './Shared/AppHeader';
+import SearchBooks from './Search/SearchBooks';
+import AddBook from './Book/AddBook';
+import BookDetails from './Book/BookDetails';
 
 const bookShelves = [
   {id: 1, key: 'currentlyReading', title: 'Currently Reading'},
