@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookCtrl from './BookCtrl';
+import { Link } from 'react-router-dom';
 
 class Book extends Component {
   constructor() {
@@ -23,7 +24,11 @@ class Book extends Component {
             currentShelf={this.props.shelf}
             updateShelf={this.updateShelf} />
         </div>
-        <div className="book-title">{this.props.book.title ? this.props.book.title : ''}</div>
+        <div className="book-title">
+          <Link to={`/books/${this.props.book.id}`} className="book-link">
+            {this.props.book.title ? this.props.book.title : ''}
+          </Link>
+        </div>
         <div className="book-authors">{this.props.book.authors ? this.props.book.authors.join(', ') : ''}</div>
       </div>
     );

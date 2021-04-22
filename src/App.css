@@ -96,7 +96,7 @@ body, .app {
   background: #e9e;
 }
 
-.search-books-input-wrapper > input {
+.search-books-input-wrapper>input {
   color: dimgray;
 }
 
@@ -108,7 +108,8 @@ body, .app {
   outline: none;
 }
 
-.close-search {
+.close-search,
+.close-details {
   display: block;
   top: 20px;
   left: 15px;
@@ -166,6 +167,15 @@ button:active {
   margin-top: 10px;
 }
 
+.book-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.book-link:hover {
+  color: #D291BC;
+}
+
 .book-authors {
   color: #999;
 }
@@ -216,4 +226,36 @@ button:active {
 
 .fa-icons {
   margin: 10px;
+}
+
+/* book details */
+
+.book-details-content {
+  padding: 40px 130px;
+  color: dimgray;
+}
+
+.book-details-subtitle {
+  margin: 0;
+  color: #b9b4b4;
+  font-weight: 500;
+}
+
+.book-details-title {
+  margin-bottom: 0;
+}
+
+.book-details-desc {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.book-details-author {
+  margin: 4px 0;
+  font-weight: 500;
+}
+
+.close-details {
+  height: 25px;
+  background-position: unset;
 }
