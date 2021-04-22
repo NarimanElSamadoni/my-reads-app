@@ -21,7 +21,7 @@ class SearchBooks extends Component {
   }
 
   searchBooks(query) {
-    if (query === "") {
+    if (query.trim() === "") {
       this.setState((curState) => ({
         ...curState,
         filteredBooks: []
